@@ -1,0 +1,14 @@
+version: '3'
+services:
+  main:
+    build:
+        context: .
+        args:
+            - http_proxy
+            - https_proxy
+            - no_proxy
+    image: cubeearth/tomcat8-oracle-java7
+    ports:
+    - 8082:8080
+    environment:
+    - TOMCAT_CLUSTER_BROADCAST_IP=${TOMCAT_CLUSTER_BROADCAST_IP}

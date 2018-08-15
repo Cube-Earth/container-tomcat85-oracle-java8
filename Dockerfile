@@ -1,4 +1,4 @@
-FROM cubeearth/oracle-java7-server
+FROM cubeearth/oracle-java8
 
 # TODO:
 # - SSL
@@ -8,7 +8,7 @@ RUN wget -q -O /etc/apk/keys/necromancerr@users.noreply.github.com.rsa.pub https
 	echo "https://github.com/Cube-Earth/alpine-tools/releases/download/repository" >> /etc/apk/repositories && \
 	apk add --no-cache xmlstarlet musl zip tomcat-apr && \
 	/usr/glibc-compat/sbin/ldconfig /lib && \
-	wget -q -O - `wget -q -O - https://tomcat.apache.org/download-80.cgi | grep -o '<a href *= *"[^"]*' | sed 's#^[^"]*"\(.*\)$#\1#' | grep -E '^http.*/bin/.*8\.0\.[0-9]+\.tar.\gz$'` \
+	wget -q -O - `wget -q -O - https://tomcat.apache.org/download-80.cgi | grep -o '<a href *= *"[^"]*' | sed 's#^[^"]*"\(.*\)$#\1#' | grep -E '^http.*/bin/.*8\.5\.[0-9]+\.tar.\gz$'` \
 	| tar xzf - -C /opt && \
 	ln -s /opt/apache-tomcat* /opt/tomcat && \
 	sed -i 's/^shared.loader=/shared.loader=\$\{catalina\.home\}\/shared/' /opt/tomcat/conf/catalina.properties && \
